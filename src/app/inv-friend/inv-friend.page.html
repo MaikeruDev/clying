@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Invite a friend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let friend of friends; let x = index" [attr.data-index]="x">
+      <ion-item (click)="openFriendProfile(friend.uid)" lines="none" style="width: 100%;">
+        <ion-avatar>
+          <img style="margin-top: 0" src="{{friend.pfp}}">
+        </ion-avatar>
+        <ion-label style="margin-left: 3.5%">{{ friend.name }}</ion-label>
+      </ion-item>
+      <ion-button (click)="invitePlayer(friend)" *ngIf="!invitedPlayers.includes(friend.uid) && !joinedPlayers.includes(friend.uid)">Invite</ion-button>
+      <ion-button *ngIf="invitedPlayers.includes(friend.uid)  || joinedPlayers.includes(friend.uid)" disabled>Invite</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,6 @@
+{
+	"appId": "com.michidev.clying",
+	"appName": "Clying",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

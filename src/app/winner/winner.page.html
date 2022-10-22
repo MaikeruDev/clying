@@ -1,0 +1,99 @@
+<ion-content *ngIf="!done">
+  <ion-title class="ion-text-center" style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 15%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">Round results</ion-title>
+
+  <ion-title *ngIf="winner == 'Clyer'" class="ion-text-center" color="primary" style="font-size: 10.5vw; font-family: comfortaa; margin-top: 8%; margin-bottom: 5%;">Clyer wins!</ion-title>
+  <ion-title *ngIf="winner == 'nClyer'" class="ion-text-center" color="primary" style="font-size: 10.5vw; font-family: comfortaa; margin-top: 8%; margin-bottom: 5%;">Clyer loses!</ion-title>
+  <ion-title *ngIf="winner == 'Nobody'" class="ion-text-center" color="primary" style="font-size: 10.5vw; font-family: comfortaa; margin-top: 8%; margin-bottom: 5%;">It's a Tie!</ion-title>
+
+  <ion-list *ngIf="winner == 'Clyer'">
+    <ion-item>
+      <ion-avatar>
+        <img src="{{ clyerPfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ clyerName }} 😈</ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ clyerPoints }}</p>
+      </ion-text>
+      <ion-text color="success">
+        <p>+ 500</p>
+      </ion-text>
+    </ion-item>
+    <ion-item *ngFor="let player of playersNotClyer">
+      <ion-avatar>
+        <img src="{{ player.pfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ player.name }} 😇</ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ player.points }}</p>
+      </ion-text>
+      <ion-text color="danger">
+        <p>- 200</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="winner == 'nClyer'">
+    <ion-item *ngFor="let player of playersNotClyer">
+      <ion-avatar>
+        <img src="{{ player.pfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ player.name }} 😇</ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ player.points }}</p>
+      </ion-text>
+      <ion-text color="success">
+        <p>+ 500</p>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        <img src="{{ clyerPfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ clyerName }} 😈</ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ clyerPoints }}</p>
+      </ion-text>
+      <ion-text color="danger">
+        <p>- 200</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="winner == 'Nobody'">
+    <ion-item *ngFor="let player of players">
+      <ion-avatar>
+        <img src="{{ player.pfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ player.name }} <span *ngIf="player.uid != clyerUID">😇</span><span *ngIf="player.uid == clyerUID">😈</span></ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ player.points }}</p>
+      </ion-text>
+      <ion-text color="warning">
+        <p>+ 0</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+<ion-text class="ion-text-center">
+  <p *ngIf="qrUID != hostUID" style="color: grey">Waiting for the host to continue...</p>
+</ion-text>
+<ion-button (click)="continue()" fill="" expand ="full" style="color: var(--ion-color-primary)" *ngIf="qrUID == hostUID && roundNum < 5">Continue</ion-button>
+<ion-button (click)="finish()" fill="" expand ="full" style="color: var(--ion-color-primary)" *ngIf="qrUID == hostUID && roundNum == 5">Show Results</ion-button>
+
+</ion-content>
+
+<ion-content *ngIf="done">
+  <ion-title class="ion-text-center" style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 15%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">Game results</ion-title>
+
+  <ion-list>
+    <ion-item *ngFor="let player of playersSorted; let i = index" [attr.data-index]="i">
+      <ion-avatar>
+        <img src="{{ player.pfp }}">
+      </ion-avatar>
+      <ion-label style="margin-left: 1vw">{{ player.name }} <span *ngIf="i == 0">👑</span> </ion-label>
+      <ion-text style="margin-right: 1vw;">
+        <p>{{ player.points }}</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

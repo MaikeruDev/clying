@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+  <ion-slides pager="true" [options]="slideOpts" #Sliderino>
+      
+    <ion-slide>
+      <ion-title style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 25%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">PROFILE</ion-title>
+      <ion-card style="margin-top: -20%;">
+        <ion-avatar (click)="openPfp()" class="pfp">
+          <img src="{{ mypfp }}" style="position: relative;">
+          <ion-icon style="position: absolute; top: 55px; right: 39%; padding: 5px; background: #ea5153; border-radius: 50px; color: white;" name="pencil"></ion-icon>
+        </ion-avatar>
+        <ion-title color="primary" class="ion-text-center username">{{ myname }}</ion-title>
+        <ion-title class="ion-text-center email">{{ mymail }}</ion-title>
+        <p></p>
+      </ion-card>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card color="primary" style="padding: 12px" class="statsCard">
+              Games played: <b>{{ myplayed }}</b>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card color="primary" style="padding: 12px" class="statsCard">
+              Points: <b>{{ mypoints }}</b>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card color="primary" style="padding: 12px" class="statsCard">
+              Friends: <b>{{ friends.length }}</b>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card color="primary" style="padding: 12px" class="statsCard">
+              Achievements: <b>{{ achievementsReached }}/{{ achievementsTotal }}</b>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-list>
+        <ion-item (click)="openAchievements()">
+          <ion-icon name="trophy" style="margin-right: 2.5vw;" color="primary"></ion-icon>
+          <ion-label>Achievements</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="settings" style="margin-right: 2.5vw;" color="primary"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-item>
+        <ion-item (click)="Share()">
+          <ion-icon name="share-social" style="margin-right: 2.5vw;" color="primary"></ion-icon>
+          <ion-label>Invite your Friends</ion-label>
+        </ion-item>
+        <ion-item (click)="signOut()">
+          <ion-icon name="log-out" style="margin-right: 2.5vw;" color="primary"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+
+    <ion-slide>
+      <img class="bigLogo" style="background: white;" src="../../assets/svg/animation-logo.svg" />
+
+      <ion-card color="primary" class="playMonke">
+        <ion-card-header>
+          <ion-title style="font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 8.5vw;">PLAY</ion-title>
+        </ion-card-header>
+        <ion-card-content style="height: 30vh;">
+          <p>Host your own Game or...</p>
+          <ion-button expand="block" color="light" style="--border-radius: 15px;" (click)="hostGame()">Create Game</ion-button>
+          <p style="margin-top: 5%">...join your friends one!</p>
+          <ion-input [(ngModel)]="joinID" style="height: 5vh; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 5vw; padding-right: 5px; border-radius: 15px; --background: white;" color="primary" maxlength="5" placeholder="e.g. 5A31G"></ion-input>
+          <ion-button expand="block" color="light" style="--border-radius: 15px;" (click)="joinGame()">Join Game</ion-button>
+        </ion-card-content>
+      </ion-card>
+      <ion-item lines="none" style="position: absolute; bottom: 2%; left: 50%; transform: translateX(-50%);">
+        <ion-icon style="color:lightgray" name="arrow-back-outline"></ion-icon> 
+        <ion-label style="color:lightgray; padding: 0 10px 0 10px">Swipe</ion-label> 
+        <ion-icon style="color:lightgray" name="arrow-forward-outline"></ion-icon>
+      </ion-item>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-title style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 15%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">FRIENDS</ion-title>
+      <ion-button fill="outline" expand="block" (click)="openAddFriends()">Add Friends</ion-button>
+      <ion-list>
+        <ion-item *ngFor="let friend of friends">
+          <ion-item (click)="openFriendProfile(friend.uid)" lines="none" style="width: 100%;">
+            <ion-avatar>
+              <img style="margin-top: 0" src="{{friend.pfp}}">
+            </ion-avatar>
+            <ion-label style="margin-left: 3.5%">{{ friend.name }}</ion-label>
+          </ion-item>
+          <ion-icon color="primary" name="close-circle-outline" (click)="deleteFriend(friend.uid, friend.name)"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <p style="font-size: small; color: gray">More friends, for more fun!</p>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button slot="start" (click)="BackToHome()">
+        <ion-icon name="arrow-back-circle-outline" style="padding-right: 5px;"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title class="ion-text-center" style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 30%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: x-large;">{{ username }}</ion-title>
+  <ion-avatar class="pfp" style="width: 50%; height: auto; margin-top: -40%">
+    <img src="{{ userpfp }}" style="position: relative;">
+  </ion-avatar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card color="primary" style="padding: 12px" class="statsCard">
+          Games played: <b>{{ userplayed }}</b>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card color="primary" style="padding: 12px" class="statsCard">
+          Points: <b>{{ userpoints }}</b>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card color="primary" style="padding: 12px" class="statsCard">
+          Friends: <b>{{ userfriends.length }}</b>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card color="primary" style="padding: 12px" class="statsCard">
+          Achievements: <b>{{ achievementsReached }}/{{ achievementsTotal }}</b>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

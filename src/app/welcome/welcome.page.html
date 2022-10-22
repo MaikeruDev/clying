@@ -1,0 +1,85 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts" #Sliderino>
+    <ion-slide>
+
+      <ion-card color="primary" style="padding: 18% 0 8% 0">
+        <ion-card-header>
+          <img src="../../assets/icon/brandmark-design-red.png">
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button expand="full" color="light" (click)="nextSlide()" style="margin-top: 15%">Get Started!</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-slide>
+    <ion-slide>
+
+      <ion-card color="primary" style="padding: 20% 0 14% 0">
+        <ion-card-header>
+          <ion-title style="font-size: 8vw;">Welcome to Clying</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text>This is a party game in which you can gain an advantage by lying well.</ion-text>
+          <br>
+          <br>
+          <ion-text>More on the game later, let's sign up!</ion-text>
+          <ion-button expand="full" color="light" (click)="nextSlide()" style="margin-top: 15%"><ion-icon slot="icon-only" name="arrow-forward"></ion-icon></ion-button>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-slide>
+    <ion-slide>
+
+      <!-- SIGN UP -->
+      <ion-card color="primary" style="padding: 9% 0 3% 0; width: 100%;" *ngIf="!login">
+        <ion-card-header>
+          <ion-title style="font-size: 8vw;">Getting Started!</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item color="primary">
+            <ion-icon name="Person"></ion-icon>
+            <ion-input [(ngModel)]="registerName" placeholder="Nickname"></ion-input>
+          </ion-item>
+          <ion-item color="primary">
+            <ion-icon name="mail"></ion-icon>
+            <ion-input [(ngModel)]="registerMail" placeholder="E-Mail"></ion-input>
+          </ion-item>
+          <ion-item color="primary">
+            <ion-icon name="lock-open"></ion-icon>
+            <ion-input [(ngModel)]="registerPw" placeholder="Password" type="password"></ion-input>
+          </ion-item>
+          <ion-item color="primary">
+            <ion-icon name="lock-closed"></ion-icon>
+            <ion-input [(ngModel)]="registerPww" placeholder="Repeat Password" type="password"></ion-input>
+          </ion-item>
+          <ion-button expand="full" color="light" (click)="register()" style="margin-top: 8%">Sign up</ion-button>
+          <p style="margin-top: 5%" (click)="changeLogin()">Already have an Account?</p>
+        </ion-card-content>
+      </ion-card>
+      
+      <!-- LOGIN -->
+      <ion-card color="primary" style="padding: 9% 0 3% 0; width: 100%;" *ngIf="login">
+        <ion-card-header>
+          <ion-title style="font-size: 8vw;">Sign in!</ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item color="primary">
+            <ion-icon name="mail"></ion-icon>
+            <ion-input [(ngModel)]="loginMail" placeholder="E-Mail"></ion-input>
+          </ion-item>
+          <ion-item color="primary">
+            <ion-icon name="lock-open"></ion-icon>
+            <ion-input [(ngModel)]="loginPw" placeholder="Password" type="password"></ion-input>
+          </ion-item>
+          <ion-button expand="full" color="light" (click)="Login()" style="margin-top: 8%">Login</ion-button>
+          <p style="margin-top: 5%; font-size: 3vw; color: rgba(255, 255, 255, 0.555);" (click)="passwordForgot()">Forgot your Password?</p>
+          <p style="margin-top: 5%" (click)="changeLogin()">Don't have an Account yet?</p>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>

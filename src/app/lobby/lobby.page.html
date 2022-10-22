@@ -1,0 +1,123 @@
+<ion-content *ngIf="!started" >
+  <ion-toolbar>
+    <img slot="start" class="smallLogo" style="background: white;" src="../../assets/svg/small-logo.png" />
+    <ion-title slot="end">ID: {{ id }} <ion-icon name="copy-outline" class="copyBtn" (click)="copyID()"></ion-icon> </ion-title>
+  </ion-toolbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center" size="4"></ion-col>
+      <ion-col class="ion-text-center" size="4">
+        <ion-label>👑</ion-label>
+        <ion-avatar class="pfp">
+          <img src="{{ hostpfp }}">
+        </ion-avatar>
+        <h1 class="ion-text-center username">{{ host }}</h1>
+      </ion-col>
+      <ion-col class="ion-text-center" size="4"></ion-col>
+    </ion-row>
+
+
+    <!-- Host Teil -->
+    <ion-row *ngIf="myuid == hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of players; let i = index" [attr.data-index]="i">
+        <div *ngIf="i == 0 || i == 1 || i == 2" (click)="checkIfInv(player.uid)">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}<ion-icon *ngIf="myuid == hostUID && player.uid != 'inv'" (click)="kickPlayer(player.uid, player.name)" style="padding: 0 0 0 5px; vertical-align: middle;" name="exit-outline"></ion-icon></h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myuid == hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of players; let i = index" [attr.data-index]="i">
+        <div  *ngIf="i == 3 || i == 4 || i == 5" (click)="checkIfInv(player.uid)">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}<ion-icon *ngIf="myuid == hostUID && player.uid != 'inv'" (click)="kickPlayer(player.uid, player.name)" style="padding: 0 0 0 5px; vertical-align: middle;" name="exit-outline"></ion-icon></h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myuid == hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of players; let i = index" [attr.data-index]="i">
+        <div  *ngIf="i == 6 || i == 7 || i == 8" (click)="checkIfInv(player.uid)">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}<ion-icon *ngIf="myuid == hostUID && player.uid != 'inv'" (click)="kickPlayer(player.uid, player.name)" style="padding: 0 0 0 5px; vertical-align: middle;" name="exit-outline"></ion-icon></h1>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Player Teil -->
+    <ion-row *ngIf="myuid != hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of playersInvHidden; let i = index" [attr.data-index]="i">
+        <div *ngIf="i == 0 || i == 1 || i == 2" (click)="checkIfInv(player.uid)">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}<ion-icon *ngIf="myuid == hostUID" (click)="kickPlayer(player.uid, player.name)" style="padding: 0 0 0 5px; vertical-align: middle;" name="exit-outline"></ion-icon></h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myuid != hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of playersInvHidden; let i = index" [attr.data-index]="i">
+        <div  *ngIf="i == 3 || i == 4 || i == 5">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myuid != hostUID">
+      <ion-col class="ion-text-center" size="4" *ngFor="let player of playersInvHidden; let i = index" [attr.data-index]="i">
+        <div  *ngIf="i == 6 || i == 7 || i == 8">
+          <ion-avatar class="pfp">
+            <img src="{{ player.pfp }}">
+          </ion-avatar>
+          <h1 class="ion-text-center username">{{ player.name }}</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <p class="ion-text-center" style="margin-top: 10%; color: white" *ngIf="myuid == hostUID && playersInvHidden.length < 2">At least 3 Players needed...</p>
+  <p class="ion-text-center" style="color: white" *ngIf="myuid != hostUID">Waiting for the host to start...</p>
+  <ion-button *ngIf="myuid == hostUID && playersInvHidden.length >= 2" expand="block" color="light" (click)="startGame()">Start</ion-button>
+  <ion-button *ngIf="myuid == hostUID" expand="block" fill="outline" color="light" (click)="closeGame()">Close Game</ion-button>
+  <ion-button *ngIf="myuid != hostUID" expand="block" fill="outline" color="light" (click)="exitGame()">Exit</ion-button>
+</ion-content>
+
+
+
+<ion-content *ngIf="started" id="startingScreen">
+  <div class="demo">
+    <div class="demo__colored-blocks">
+      <div class="demo__colored-blocks-rotater">
+        <div class="demo__colored-block"></div>
+        <div class="demo__colored-block"></div>
+        <div class="demo__colored-block"></div>
+      </div>
+      <div class="demo__colored-blocks-inner"></div>
+      <div class="demo__text">GO</div>
+    </div>
+    <div class="demo__inner">
+      <svg class="demo__numbers" viewBox="0 0 100 100">
+        <defs>
+          <path class="demo__num-path-1" d="M40,28 55,22 55,78"/>
+          <path class="demo__num-join-1-2" d="M55,78 55,83 a17,17 0 1,0 34,0 a20,10 0 0,0 -20,-10"/>
+          <path class="demo__num-path-2" d="M69,73 l-35,0 l30,-30 a16,16 0 0,0 -22.6,-22.6 l-7,7"/>
+          <path class="demo__num-join-2-3" d="M28,69 Q25,44 34.4,27.4"/>
+          <path class="demo__num-path-3" d="M30,20 60,20 40,50 a18,15 0 1,1 -12,19"/>
+        </defs>
+        <path class="demo__numbers-path" 
+              d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 
+                 Q25,44 34.4,27.4
+                 l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 
+                 a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
+                 l0,-61 L40,28" />
+      </svg>
+    </div>
+  </div>
+  </ion-content>

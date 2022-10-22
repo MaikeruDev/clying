@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+ion-slides {
+  height: 100%;
+}
+
+ion-col{
+  margin: 0;
+}
+
+.statsCard{
+  margin: 1vw;
+}
+
+ion-slide{
+  display: block;
+}
+
+ion-item{
+  --background: none;
+}
+
+img{
+  margin-top: 25%;
+}
+
+.bigLogo{
+  margin-top: -10%;
+}
+
+.pfp{
+  margin: auto
+}
+
+.playMonke{
+  margin-top: -5%;
+}
+
+.username{
+  margin-top: 7%;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 600;
+}
+
+.email{
+  color: grey;
+  font-size: 2.86vw;
+  margin-bottom: 2.5%;
+}
+
+.inputCode {
+  --padding-start: 0px;
+  position: absolute;
+  top: 24vw;
+  left: 5.5%;
+  width: 88.5%;
+  height: 5vh;
+}

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-button slot="start" (click)="closeModal()">
+        <ion-icon name="arrow-back-circle-outline" style="padding-right: 5px;"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card color="primary" style="padding: 10px" *ngIf="!scannerEnabled">
+    <ion-label style="font-size: 4.5vw;">Add new Friends by their E-Mail or by scanning their QR-Code!</ion-label>
+  </ion-card>
+
+  <ion-card color="primary" *ngIf="!scannerEnabled">
+    <ion-card-header>
+      <ion-title>Add with E-Mail</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input [(ngModel)]="addMail" style="border-radius: 5px; --background: white; color: black;" color="primary" placeholder="john@doe.com"></ion-input>
+      <ion-button fill="" expand="block" (click)="addMailUserr()">Search</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="primary" *ngIf="!scannerEnabled">
+    <ion-card-header>
+      <ion-title>Your QR Code</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="qrUID" cssClass="bshadow"></ngx-qrcode>
+      <ion-button *ngIf="!scannerEnabled" (click)="activateCam()" expand="block" fill="">Scan QR-Code</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="primary" style="padding: 10px" *ngIf="scannerEnabled">
+    <ion-label style="font-size: 4.5vw;">Align the camera so that it can read the QR code easily!</ion-label>
+  </ion-card>
+  <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+</ion-content>

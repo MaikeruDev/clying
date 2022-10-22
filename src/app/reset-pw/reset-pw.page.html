@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button slot="start" (click)="closeModal()">
+        <ion-icon name="arrow-back-circle-outline" style="padding-right: 5px;"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title class="ion-text-center" style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 15%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">Password reset</ion-title>
+
+  <ion-card color="primary">
+    <ion-card-content>
+      <ion-item color="primary" lines="none">
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input [(ngModel)]="email" placeholder="E-Mail"></ion-input>
+      </ion-item>
+      <ion-button expand="full" color="light" (click)="resetPW()">Reset</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

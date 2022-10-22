@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-label slot="start" class="topIcon" *ngIf="isClyer == 'are not'" style="padding-left: 5vw;">Your Role: 😇</ion-label>
+    <ion-label slot="start" class="topIcon" *ngIf="isClyer == 'are'" style="padding-left: 5vw;">Your Role: 😈</ion-label>
+    <ion-icon (click)="leaveGame()" name="exit" style="font-size: x-large; position: absolute; right: 5vw; z-index: 9;" slot="start"></ion-icon>
+  </ion-toolbar>
+  <ion-title class="ion-text-center" style="color: white; background: #ea5153; padding-top: 15%; padding-bottom: 15%; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px;">Round {{ roundNum }}</ion-title>
+
+  <div class="emojiInfo" style="margin-top: 15%;" *ngIf="starting">
+    <ion-label *ngIf="isClyer == 'are not'" style="font-size: 25vw; display: flex; justify-content: center">😇</ion-label>
+    <ion-label *ngIf="isClyer == 'are'" style="font-size: 25vw; display: flex; justify-content: center">😈</ion-label>
+    <br>
+    <ion-label style="font-size: 5vw; display: flex; justify-content: center; text-align: center;">You {{ isClyer }} the Clyer</ion-label> 
+  </div>
+
+  <div class="roleText" style="margin-top: 15%;" *ngIf="!starting && players[talkingPlayer].uid != myuid">
+    <ion-avatar class="pfp" style="width: 80%; height: auto; margin-top: -40%; margin-bottom: 2vh;">
+      <img src="{{ players[talkingPlayer].pfp }}" style="position: relative;">
+    </ion-avatar>
+    <ion-label style="font-size: 5vw; display: flex; justify-content: center">It's {{ players[talkingPlayer].name }}'s turn.</ion-label>
+    <ion-label style="font-size: 5vw; display: flex; justify-content: center">Listen closely!</ion-label>
+  </div>
+
+  <div class="roleText" style="margin-top: 15%;" *ngIf="!starting && players[talkingPlayer].uid == myuid && isClyer == 'are not'">
+    <img src="https://random.imagecdn.app/500/900" style="margin-bottom: 2vh;">
+    <ion-label style="font-size: 5vw; display: flex; justify-content: center; text-align: center;">Try to describe this picture to the other players!</ion-label>
+  </div>
+
+  <div class="roleText" style="margin-top: 15%;" *ngIf="!starting && players[talkingPlayer].uid == myuid && isClyer == 'are'">
+    <ion-label *ngIf="isClyer == 'are'" style="font-size: 25vw; display: flex; justify-content: center">😈</ion-label>
+    <ion-label style="font-size: 5vw; display: flex; justify-content: center; text-align: center;">Try to come up with an idea and fool the others!</ion-label>
+  </div>
+
+  <ion-button (click)="nextPlayer()" class="roleBtn" *ngIf="!starting && players[talkingPlayer].uid == myuid" color="primary" fill="" style=" color: #ea5153; position: absolute; bottom: 4%; left: 50%; transform: translate(-50%, -4%);">Done</ion-button>
+</ion-content>

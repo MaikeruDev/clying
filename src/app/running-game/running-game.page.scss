@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+.emojiInfo{
+    position: absolute; 
+    left: 50%; 
+    top: 43%; 
+    transform: translate(-50%, -40%);
+    animation-name: moveOut;
+    animation-duration: 6s;
+    opacity: 0;
+    font-family: 'Comfortaa', cursive;
+}
+
+@keyframes moveOut {
+    0% {top: -20%; opacity: 1;}
+    10% {top: 43%; opacity: 1;}
+    20% {top: 33%; opacity: 1;}
+    30% {top: 43%; opacity: 1;}
+    80% {opacity: 1;}
+    100% {opacity: 0; display: none;}
+  }
+
+.roleText{
+    position: absolute; 
+    left: 50%; 
+    top: 43%; 
+    transform: translate(-50%, -40%);
+    animation-name: moveIn;
+    animation-duration: 9s;
+    font-family: 'Comfortaa', cursive;
+}
+
+.roleBtn{
+    animation-name: moveIn;
+    animation-duration: 9s;
+    font-family: 'Comfortaa', cursive;
+}
+
+@keyframes moveIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+.pfp{
+    margin: auto
+}
+
+.topIcon{
+    position: absolute;
+    left: 1vw;
+    animation-name: moveIn;
+    animation-duration: 9s;
+}
+
+ion-header{
+    --background: transparent;
+}
+
+ion-toolbar{
+    --background: transparent;
+    position: absolute;
+    color: white;
+}

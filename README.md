@@ -2,6 +2,9 @@
 
 Welcome to **Clying**, a captivating web app game that tests your wit, creativity, and detective skills. In this multiplayer experience, you'll create a profile, connect with friends, join lobbies, and immerse yourself in rounds of deception, description, and deduction. Let the game of words, lies, and emojis begin!
 
+# IMPORTANT
+Clying has been discontinued. Altough there is a new version of Clying. We converted from Web to a Discord Bot. Find more information [here](https://github.com/MaikeruDev/Clying-Discord).
+
 ## How to Play
 
 ### 1. Profile Creation
